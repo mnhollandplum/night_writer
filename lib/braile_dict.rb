@@ -1,5 +1,7 @@
 class BraileDict
 
+  attr_reader :english_to_braile
+
   def initialize
     @english_to_braile = {
             "a"=> "0.....",
