@@ -1,24 +1,9 @@
-# class NightWriter
-#
-#   def intialize
-#
-#   end
-#
-#   def read_contents
-#     open_file = File.open 'message.txt'
-#     read_file = open_file.read
-#   end
-#
-#   def total_characters_in_file
-#     read_contents.length
-#   end
-#
-#
-#
-# end
+require './lib/braile_dict.rb'
+require './lib/encrypt'
+require './lib/decrypt'
+
 
 handle = File.open(ARGV[0], "r")
-
 incoming_txt = handle.read
 handle.close
 capitalized_text = incoming_txt.upcase

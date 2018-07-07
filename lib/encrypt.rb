@@ -18,4 +18,21 @@ class Encrypt
     @dict.english_to_braile[chars]
   end
   end
+
+  def splits_string_to_3_rows
+    row_1 = []
+    row_2 = []
+    row_3 = []
+    braile_translation_1 = converts_per_chars
+    braile_translation_1.each do |braile|
+      while braile != "" do
+      row_1 << braile.slice(0..1)
+      row_2 << braile.slice(0..1)
+      row_3 << braile.slice(0..1)
+                        end
+                      end
+                  
+    return row_1, row_2, row_3
+  end
+
 end

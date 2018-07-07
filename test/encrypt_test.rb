@@ -22,4 +22,11 @@ class EncryptTest < Minitest::Test
     result = encryptor.converts_per_chars
     assert_equal ["0.00..", "0..0..", "0.0.0.", "0.0.0.", "0..00."], result
   end
+
+  def test_splits_brail_strings_into_rows
+    encryptor = Encrypt.new("hello")
+    bd = BraileDict.new
+    result = encryptor.splits_string_to_3_rows
+    assert_equal ["0.0.0.0.0."] ["00.00.0..0"] ["....0.0.0."], result
+  end
 end
