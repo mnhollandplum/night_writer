@@ -45,6 +45,23 @@ class EncryptTest < Minitest::Test
     assert_equal expected, actual
   end
 
+  def test_it_can_hold_multiple_letters_in_rows
+  encryptor = Encrypt.new("aa")
+  encryptor.converts_per_chars
+  encryptor.splits_rows
+  actual = encryptor.row_1
+  expected = ["0.0."]
+  assert_equal expected, actual
+  actual = encryptor.row_2
+  expected = ["...."]
+  assert_equal expected, actual
+  actual = encryptor.row_3
+  expected = ["...."]
+  binding.pry
+  assert_equal expected, actual
+end
+
+
 
 
 
