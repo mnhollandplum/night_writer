@@ -57,13 +57,26 @@ class EncryptTest < Minitest::Test
   assert_equal expected, actual
   actual = encryptor.row_3
   expected = ["...."]
-  binding.pry
   assert_equal expected, actual
 end
 
+  def test_merged_to_braile_rows
+    encryptor = Encrypt.new("a")
+    encryptor.splits_rows
+    actual = encryptor.braile_row
+    expected = "0.\n..\n.."
+    assert_equal expected, actual
+  end
 
-
-
-
+# def test_chars_limit_per_row
+#   skip
+#   encryptor = Encrypt.new("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+#   encryptor.splits_rows
+#   encryptor.braile_row
+#   encryptor.chars_limit
+#   actual = encryptor.row_1
+#   expected = "0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.\n................................................................................\n................................................................................"
+#  assert_equal expected, actual
+# end
 
 end
