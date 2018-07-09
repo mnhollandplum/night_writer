@@ -1,3 +1,4 @@
+require 'pry'
 require './lib/braile_dict.rb'
 class Encrypt
 
@@ -18,4 +19,16 @@ class Encrypt
     @dict.english_to_braile[chars]
   end
   end
+  # def splits_rows
+  #   # line_1 = single_chars.map do |chars| "#{@to_be_translated_to_braile[chars][0]}"
+  #   # end
+  #   # line_2 = single_chars.map do |chars| "#{@to_be_translated_to_braile[chars][1]}"
+  #   # end
+  #   # line_3 = single_chars.map do |chars| "#{@to_be_translated_to_braile[chars][2]}"
+  #   # end
+  #   #
+  #   # line_1.join + "\n" + line_2.join + "\n" + line_3.join
+  #
+  # end
+
 end
