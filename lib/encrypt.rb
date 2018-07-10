@@ -31,7 +31,7 @@ class Encrypt
   end
 
   def splits_rows
-    # single_chars = take_input_convert_to_array
+    single_chars = take_input_convert_to_array
     joined_rows = converts_per_chars
     if joined_rows.length > 80
       @excess_rows << joined_rows.slice(-1..80)
