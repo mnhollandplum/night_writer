@@ -77,8 +77,6 @@ end
     assert_equal expected, actual
     binding.pry
   end
-<<<<<<< HEAD
-=======
 
 def test_excess_rows
   encryptor = Encrypt.new("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
@@ -126,6 +124,4 @@ end
 #     expected = "0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.\n........................................\n........................................\n0....."
 #     assert_equal expected, actual
 #   end
-#
->>>>>>> 90b44dc9c1859389ab9d86edf451f9a604ee05a1
 end
