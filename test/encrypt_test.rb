@@ -71,25 +71,4 @@ end
     assert_equal expected, actual
     binding.pry
   end
-
-def test_excess_rows
-  encryptor = Encrypt.new("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-  encryptor.splits_rows
-  encryptor.braile_row
-  actual = encryptor.excess_rows
-  expected = ["0....."]
-end
-def test_chars_limit_per_row
-  skip
-  encryptor = Encrypt.new("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-  encryptor.splits_rows
-  encryptor.braile_row
-  actual = encryptor.chars_limit
-  expected = "0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.\n........................................\n........................................\n0....."
-  binding.pry
-
-
- assert_equal expected, actual
-end
-
 end
