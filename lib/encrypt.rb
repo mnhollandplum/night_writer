@@ -7,6 +7,9 @@ class Encrypt
               :row_1,
               :row_2,
               :row_3,
+              :row_4,
+              :row_5,
+              :row_6,
               :excess
 
 
@@ -16,6 +19,9 @@ class Encrypt
     @row_1 = []
     @row_2 = []
     @row_3 = []
+    @row_4 = []
+    @row_5 = []
+    @row_6 = []
     @excess = []
 
   end
@@ -35,7 +41,7 @@ class Encrypt
   end
 
   def split_rows
-    variable =converts_per_chars
+    variable = converts_per_chars
     variable.each do |braile|
     @row_1 << braile[0]
     @row_2 << braile[1]
@@ -44,10 +50,18 @@ class Encrypt
     return [@row_1, @row_2, @row_3]
   end
 
-
-
-
-
-
+  def translate_and_format_excess
+    translated = []
+    @excess.flatten.each do |letter|
+      translated << @dict.english_to_braile[letter]
+    end
+    binding.pry
+    translated.each do |braile|
+      @row_4 << braile[0]
+      @row_5 << braile[1]
+      @row_6 << braile[2]
+    end
+    return [@row_4, @row_5, @row_6]
+  end
 
 end
