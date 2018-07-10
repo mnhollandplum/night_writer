@@ -37,6 +37,7 @@ class EncryptTest < Minitest::Test
   end
 #
   def test_it_can_make_rows
+    skip
     encryptor = Encrypt.new("a")
     encryptor.converts_per_chars
     encryptor.splits_rows
@@ -53,19 +54,49 @@ class EncryptTest < Minitest::Test
 
   def test_it_can_hold_multiple_letters_in_rows
     skip
+  encryptor = Encrypt.new("aa")
+  encryptor.converts_per_chars
+  encryptor.splits_rows
+  actual = encryptor.row_1
+  expected = ["0.0."]
+  assert_equal expected, actual
+  actual = encryptor.row_2
+  expected = ["...."]
+  assert_equal expected, actual
+  actual = encryptor.row_3
+  expected = ["...."]
+  assert_equal expected, actual
+end
+
+  def test_merged_to_braile_rows
+    skip
     encryptor = Encrypt.new("aa")
-    encryptor.converts_per_chars
     encryptor.splits_rows
-    actual = encryptor.row_1
-    expected = ["0.0."]
+    actual = encryptor.braile_row
+    expected = "0.0.\n....\n...."
     assert_equal expected, actual
-    actual = encryptor.row_2
-    expected = ["...."]
-    assert_equal expected, actual
-    actual = encryptor.row_3
-    expected = ["...."]
-    assert_equal expected, actual
+    binding.pry
   end
+
+def test_excess_rows
+  encryptor = Encrypt.new("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+  encryptor.splits_rows
+  encryptor.braile_row
+  actual = encryptor.excess_rows
+  expected = ["0....."]
+end
+def test_chars_limit_per_row
+  skip
+  encryptor = Encrypt.new("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+  encryptor.splits_rows
+  encryptor.braile_row
+  actual = encryptor.chars_limit
+  expected = "0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.\n........................................\n........................................\n0....."
+  binding.pry
+
+
+ assert_equal expected, actual
+end
 
   def test_merged_to_braile_rows
     skip
