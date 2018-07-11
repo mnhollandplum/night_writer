@@ -18,7 +18,7 @@ class EncryptTest < Minitest::Test
 #
   def test_it_takes_excess_chars
     encryptor = Encrypt.new
-    encryptor.take_input_convert_to_array("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    encryptor.take_input_convert_to_array("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     result = encryptor.excess
     assert_equal [["a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"]], result
   end
