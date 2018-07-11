@@ -13,8 +13,7 @@ class Encrypt
               :excess
 
 
-  def initialize(to_be_translated_to_braile)
-    @to_be_translated_to_braile = to_be_translated_to_braile
+  def initialize
     @dict = BraileDict.new
     @row_1 = []
     @row_2 = []
@@ -24,6 +23,14 @@ class Encrypt
     @row_6 = []
     @excess = []
 
+  end
+
+  def translate(to_be_translated_to_braile)
+    @to_be_translated_to_braile = to_be_translated_to_braile
+    take_input_convert_to_array
+    converts_per_chars
+    split_rows
+    translate_and_format_excess
   end
 
   def take_input_convert_to_array
@@ -41,13 +48,12 @@ class Encrypt
   end
 
   def split_rows
-    variable = converts_per_chars
-    variable.each do |braile|
+    converts_per_chars.each do |braile|
     @row_1 << braile[0]
     @row_2 << braile[1]
     @row_3 << braile[2]
     end
-    return [@row_1, @row_2, @row_3]
+    return [@row_1, @row_2, @row_3].compact
   end
 
   def translate_and_format_excess
@@ -55,7 +61,6 @@ class Encrypt
     @excess.flatten.each do |letter|
       translated << @dict.english_to_braile[letter]
     end
-    binding.pry
     translated.each do |braile|
       @row_4 << braile[0]
       @row_5 << braile[1]
