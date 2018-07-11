@@ -2,11 +2,10 @@ require 'pry'
 require './lib/braile_dict.rb'
 class Encrypt
 
-  attr_reader :to_be_translated_to_braile,
-              :dict,
+  attr_reader :dict,
               :row_1,
               :row_2,
-              :row_3,
+              :row_3
 
 
   def initialize
