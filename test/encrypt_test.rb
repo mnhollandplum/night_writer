@@ -81,5 +81,14 @@ class EncryptTest < Minitest::Test
     assert_equal expected, actual
   end
 
-
+#
+#   def test_chars_limit_per_row
+#     skip
+#     encryptor = Encrypt.new("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+#     encryptor.splits_rows
+#     encryptor.braile_row
+#     actual = encryptor.chars_limit
+#     expected = "0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.\n........................................\n........................................\n0....."
+#     assert_equal expected, actual
+#   end
 end
