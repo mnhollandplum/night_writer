@@ -17,4 +17,12 @@ class DecryptTest < Minitest::Test
     expected = "q"
     assert_equal expected, result
   end
+
+  def test_takes_input_and_splits
+    decrypt = Decrypt.new
+    result = decrypt.take_and_split("0.0.0.............")
+    expected = ["0.0.0.", "......", "......"]
+    assert_equal expected, result
+  end
+
 end
