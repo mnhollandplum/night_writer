@@ -25,4 +25,34 @@ class DecryptTest < Minitest::Test
     assert_equal expected, result
   end
 
+  def test_can_join_to_propper_rows
+    decrypt = Decrypt.new
+    split = decrypt.take_and_split("0.0.0.............")
+    result = decrypt.join_row(split)
+    expected = [["0.", "..", ".."], ["0.", "..", ".."], ["0.", "..", ".."]]
+    assert_equal expected, result
+  end
+
+  def test_translate_dict_value_to_eng
+    decrypt = Decrypt.new
+    split = decrypt.take_and_split("0.0.0.............")
+    characters = decrypt.join_row(split)
+    result = decrypt.translate_chars(characters)
+    expected = "aaa"
+    assert_equal expected, result
+  end
+
+  def test_integrated_method
+    decrypt = Decrypt.new
+    result = decrypt.translate("0.0.0.............")
+    expected = "aaa"
+    assert_equal expected, result
+  end
+
+  # def test_more_than_40_characters
+  #   decrypt = Decrypt.new
+  #   result = decrypt.translate("0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.................................................................................................................................................................0.0.........")
+  #   expected = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  #   assert_equal expected, result
+  # end
 end
