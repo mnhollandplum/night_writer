@@ -15,22 +15,16 @@ class EncryptTest < Minitest::Test
     result = encryptor.take_input_convert_to_array("hello")
     assert_equal ["h", "e", "l", "l", "o"], result
   end
-#
-  def test_it_takes_excess_chars
-    encryptor = Encrypt.new
-    encryptor.take_input_convert_to_array("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-    result = encryptor.excess
-    assert_equal [["a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"]], result
-  end
-#
+
   def test_it_can_convert_chars
     encryptor = Encrypt.new
-    result = encryptor.converts_per_chars("hello")
+    prepped = encryptor.take_input_convert_to_array("hello")
+    result = encryptor.converts_per_chars(prepped)
     assert_equal [["0.","00",".."], ["0.",".0",".."], ["0.","0.","0."], ["0.","0.","0."], ["0.",".0","0."]], result
   end
 
   def test_it_can_take_first_row_chars
-    encryptor = Encrypt.new("a")
+    encryptor = Encrypt.new
     expected = "0."
     actual = encryptor.dict.english_to_braile["a"][0]
     assert_equal expected, actual
@@ -38,8 +32,9 @@ class EncryptTest < Minitest::Test
 
   def test_it_can_make_rows
     encryptor = Encrypt.new
-    encryptor.split_rows([["0."],[".."],[".."]])
-    binding.pry
+    first = encryptor.take_input_convert_to_array("a")
+    second = encryptor.converts_per_chars(first)
+    third = encryptor.split_rows(second)
     actual = encryptor.row_1
     expected = ["0."]
     assert_equal expected, actual
@@ -51,44 +46,4 @@ class EncryptTest < Minitest::Test
     assert_equal expected, actual
   end
 
-  def test_it_can_hold_multiple_letters_in_rows
-    encryptor = Encrypt.new
-    v = encryptor.converts_per_chars(["a", "a"])
-    encryptor.split_rows(v)
-    actual = encryptor.row_1
-    expected = ["0.", "0."]
-    assert_equal expected, actual
-    actual = encryptor.row_2
-    expected = ["..", ".."]
-    assert_equal expected, actual
-    actual = encryptor.row_3
-    expected = ["..", ".."]
-    assert_equal expected, actual
-  end
-
-  def test_excess_rows
-    encryptor = Encrypt.new
-    encryptor.take_input_convert_to_array("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-    encryptor.translate_and_format_excess
-    actual = encryptor.row_4
-    expected = ["0."]
-    assert_equal expected, actual
-    actual = encryptor.row_5
-    expected = [".."]
-    assert_equal expected, actual
-    actual = encryptor.row_6
-    expected = [".."]
-    assert_equal expected, actual
-  end
-
-#
-#   def test_chars_limit_per_row
-#     skip
-#     encryptor = Encrypt.new("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-#     encryptor.splits_rows
-#     encryptor.braile_row
-#     actual = encryptor.chars_limit
-#     expected = "0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.\n........................................\n........................................\n0....."
-#     assert_equal expected, actual
-#   end
 end
