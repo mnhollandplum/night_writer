@@ -11,4 +11,4 @@ english_text = d.translate(incoming_txt)
 writer = File.open(ARGV[1], "w")
 writer.write(english_text)
 writer.close
-puts "Created #{ARGV[1]}, containing #{english_text.length - 1} characters"
+puts "Created #{ARGV[1]}, containing #{english_text.length} characters"

@@ -11,13 +11,6 @@ class DecryptTest < Minitest::Test
     assert_instance_of Decrypt, decrypt
   end
 
-  def test_dictionary_inverted
-    decrypt = Decrypt.new
-    result = decrypt.braile_to_eng[["00","00","0."]]
-    expected = "q"
-    assert_equal expected, result
-  end
-
   def test_takes_input_and_splits
     decrypt = Decrypt.new
     result = decrypt.take_and_split("0.0.0.............")
@@ -29,7 +22,16 @@ class DecryptTest < Minitest::Test
     decrypt = Decrypt.new
     split = decrypt.take_and_split("0.0.0.............")
     result = decrypt.join_row(split)
-    expected = [["0.", "..", ".."], ["0.", "..", ".."], ["0.", "..", ".."]]
+    expected = ["0.....","0.....", "0....."]
+    assert_equal expected, result
+  end
+
+  def test_can_reformat
+    decrypt = Decrypt.new
+    split = decrypt.take_and_split("0.0.0.............")
+    single_chars = decrypt.join_row(split)
+    result = decrypt.reform_into_dict_keys(single_chars)
+    expected = [["0....."], ["0....."], ["0....."]]
     assert_equal expected, result
   end
 
@@ -37,6 +39,7 @@ class DecryptTest < Minitest::Test
     decrypt = Decrypt.new
     split = decrypt.take_and_split("0.0.0.............")
     characters = decrypt.join_row(split)
+    keys = decrypt.reform_into_dict_keys(characters)
     result = decrypt.translate_chars(characters)
     expected = "aaa"
     assert_equal expected, result
